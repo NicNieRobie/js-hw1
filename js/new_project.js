@@ -17,55 +17,61 @@ function init() {
     };
   }
 
-  document.getElementById("showNewProjectMemberSection").onclick = () => {
-    document.getElementById("addNewProjectMemberSection").style.display = 'block';
-    document.getElementById("showNewProjectMemberSection").style.display = 'none';
-    document.getElementById("noMembersLabel").style.display = 'none';
+  document.getElementById("showNewProjectMemberSection").onclick = () => showNewProjectMemberSection();
+
+  document.getElementById("addNewProjectMember").onclick = () => addNewProjectMember();
+
+  document.getElementById("createProject").onclick = () => createProjectHandle();
+}
+
+function showNewProjectMemberSection() {
+  document.getElementById("addNewProjectMemberSection").style.display = 'block';
+  document.getElementById("showNewProjectMemberSection").style.display = 'none';
+  document.getElementById("noMembersLabel").style.display = 'none';
+}
+
+function addNewProjectMember() {
+  document.getElementById("errorNewProjectMemberNameEmptyDiv").style.display = 'none';
+
+  let newMemberFirstName = document.getElementById("newProjectMemberFirstName").value;
+  let newMemberLastName = document.getElementById("newProjectMemberLastName").value;
+
+  if (!newMemberFirstName) {
+    document.getElementById("errorNewProjectMemberNameEmptyDiv").style.display = 'block';
+    document.getElementById("errorNewProjectMemberNameEmpty").innerText = "Имя участника проекта должно быть непустым!";
+    return;
   }
 
-  document.getElementById("addNewProjectMember").onclick = () => {
-    document.getElementById("errorNewProjectMemberNameEmptyDiv").style.display = 'none';
-
-    let newMemberFirstName = document.getElementById("newProjectMemberFirstName").value;
-    let newMemberLastName = document.getElementById("newProjectMemberLastName").value;
-
-    if (!newMemberFirstName) {
-      document.getElementById("errorNewProjectMemberNameEmptyDiv").style.display = 'block';
-      document.getElementById("errorNewProjectMemberNameEmpty").innerText = "Имя участника проекта должно быть непустым!";
-      return;
-    }
-
-    if (!newMemberLastName) {
-      document.getElementById("errorNewProjectMemberNameEmptyDiv").style.display = 'block';
-      document.getElementById("errorNewProjectMemberNameEmpty").innerText = "Фамилия участника проекта должна быть непустой!"
-      return;
-    }
-
-    newProjectData.members.push({
-      id: currentMemberIndex++,
-      name: newMemberFirstName + " " + newMemberLastName
-    });
-
-    displayNewProjectMembers();
+  if (!newMemberLastName) {
+    document.getElementById("errorNewProjectMemberNameEmptyDiv").style.display = 'block';
+    document.getElementById("errorNewProjectMemberNameEmpty").innerText = "Фамилия участника проекта должна быть непустой!"
+    return;
   }
 
-  document.getElementById("createProject").onclick = () => {
-    document.getElementById("errorProjectParamsDiv").style.display = 'none';
+  newProjectData.members.push({
+    id: currentMemberIndex++,
+    name: newMemberFirstName + " " + newMemberLastName
+  });
 
-    let projectName = document.getElementById("newProjectName").value;
-    let projectDesc = document.getElementById("newProjectDescription").value;
+  displayNewProjectMembers();
+}
 
-    if (!projectName) {
-      document.getElementById("errorProjectParamsDiv").style.display = 'block';
-      document.getElementById("errorProjectParams").innerText = "Название проекта должно быть непустым!"
-      return;
-    }
+function createProjectHandle() {
+  document.getElementById("errorProjectParamsDiv").style.display = 'none';
 
-    newProjectData.name = projectName;
-    newProjectData.description = projectDesc;
+  let projectName = document.getElementById("newProjectName").value;
+  let projectDesc = document.getElementById("newProjectDescription").value;
 
-    saveNewProject();
+  if (!projectName) {
+    document.getElementById("errorProjectParamsDiv").style.display = 'block';
+    document.getElementById("errorProjectParams").innerText = "Название проекта должно быть непустым!"
+    return;
   }
+
+  newProjectData.name = projectName;
+  newProjectData.description = projectDesc;
+
+  saveNewProject();
 }
 
 function displayNewProjectMembers() {

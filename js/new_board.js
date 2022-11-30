@@ -16,62 +16,72 @@ function init() {
     };
   }
 
-  document.getElementById("showNewBoardLabelSection").onclick = () => {
-    document.getElementById("addNewBoardLabelSection").style.display = 'block';
-    document.getElementById("showNewBoardLabelSection").style.display = 'none';
-    document.getElementById("noLabelsHeader").style.display = 'none';
+  document.getElementById("showNewBoardLabelSection").onclick = () => showNewBoardLabelSection();
+
+  document.getElementById("addNewBoardLabel").onclick = () => addNewBoardLabel();
+
+  document.getElementById("showNewBoardStatusSection").onclick = () => showNewBoardStatusSection();
+
+  document.getElementById("addNewBoardStatus").onclick = () => addNewBoardStatus();
+
+  document.getElementById("createBoard").onclick = () => createBoardHandle();
+}
+
+function showNewBoardLabelSection() {
+  document.getElementById("addNewBoardLabelSection").style.display = 'block';
+  document.getElementById("showNewBoardLabelSection").style.display = 'none';
+  document.getElementById("noLabelsHeader").style.display = 'none';
+}
+
+function showNewBoardStatusSection() {
+  document.getElementById("addNewBoardLabelSection").style.display = 'block';
+  document.getElementById("showNewBoardLabelSection").style.display = 'none';
+  document.getElementById("noLabelsHeader").style.display = 'none';
+}
+
+function addNewBoardLabel() {
+  document.getElementById("errorNewBoardLabelDiv").style.display = 'none';
+
+  let labelName = document.getElementById("newBoardLabelName").value;
+
+  if (newBoardData.labels.includes(labelName) || !labelName) {
+    document.getElementById("errorNewBoardLabelDiv").style.display = 'block';
+    return;
   }
 
-  document.getElementById("addNewBoardLabel").onclick = () => {
-    document.getElementById("errorNewBoardLabelDiv").style.display = 'none';
+  newBoardData.labels.push(labelName);
 
-    let labelName = document.getElementById("newBoardLabelName").value;
+  displayLabels();
+}
 
-    if (newBoardData.labels.includes(labelName) || !labelName) {
-      document.getElementById("errorNewBoardLabelDiv").style.display = 'block';
-      return;
-    }
+function addNewBoardStatus() {
+  document.getElementById("errorNewBoardStatusDiv").style.display = 'none';
 
-    newBoardData.labels.push(labelName);
+  let statusName = document.getElementById("newBoardStatusName").value;
 
-    displayLabels();
+  if (newBoardData.status.includes(statusName) || !statusName) {
+    document.getElementById("errorNewBoardStatusDiv").style.display = 'block';
+    return;
   }
 
-  document.getElementById("showNewBoardStatusSection").onclick = () => {
-    document.getElementById("addNewBoardStatusSection").style.display = 'block';
-    document.getElementById("showNewBoardStatusSection").style.display = 'none';
-    document.getElementById("noStatusLabel").style.display = 'none';
+  newBoardData.status.push(statusName);
+
+  displayStatus();
+}
+
+function createBoardHandle() {
+  document.getElementById("errorBoardParamsDiv").style.display = 'none';
+
+  let boardName = document.getElementById("newBoardName").value;
+
+  if (!boardName) {
+    document.getElementById("errorBoardParamsDiv").style.display = 'block';
+    return;
   }
 
-  document.getElementById("addNewBoardStatus").onclick = () => {
-    document.getElementById("errorNewBoardStatusDiv").style.display = 'none';
+  newBoardData.name = boardName;
 
-    let statusName = document.getElementById("newBoardStatusName").value;
-
-    if (newBoardData.status.includes(statusName) || !statusName) {
-      document.getElementById("errorNewBoardStatusDiv").style.display = 'block';
-      return;
-    }
-
-    newBoardData.status.push(statusName);
-
-    displayStatus();
-  }
-
-  document.getElementById("createBoard").onclick = () => {
-    document.getElementById("errorBoardParamsDiv").style.display = 'none';
-
-    let boardName = document.getElementById("newBoardName").value;
-
-    if (!boardName) {
-      document.getElementById("errorBoardParamsDiv").style.display = 'block';
-      return;
-    }
-
-    newBoardData.name = boardName;
-
-    saveNewBoard();
-  }
+  saveNewBoard();
 }
 
 function displayLabels() {

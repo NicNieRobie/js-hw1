@@ -59,122 +59,136 @@ function init() {
   loadBoardLabelsList();
   loadBoardTasksList();
 
-  document.getElementById("showNewTaskExecutorsSection").onclick = () => {
-    document.getElementById("addNewTaskExecutorSection").style.display = 'block';
-    document.getElementById("showNewTaskExecutorsSection").style.display = 'none';
-  }
+  document.getElementById("showNewTaskExecutorsSection").onclick = () => showNewTaskExecutorsSection();
 
-  document.getElementById("showNewTaskLabelsSection").onclick = () => {
-    document.getElementById("addNewTaskLabelSection").style.display = 'block';
-    document.getElementById("showNewTaskLabelsSection").style.display = 'none';
-  }
+  document.getElementById("showNewTaskLabelsSection").onclick = () => showNewTaskLabelsSection();
 
-  document.getElementById("showNewTaskLinksSection").onclick = () => {
-    document.getElementById("addNewTaskLinkSection").style.display = 'block';
-    document.getElementById("showNewTaskLinksSection").style.display = 'none';
-  }
+  document.getElementById("showNewTaskLinksSection").onclick = () => showNewTaskLinksSection();
 
-  document.getElementById("addNewTaskExecutor").onclick = () => {
-    const selectedOptions = document.getElementById("newTaskExecutorsSelector").selectedOptions;
+  document.getElementById("addNewTaskExecutor").onclick = () => addNewTaskExecutor();
 
-    let optionsForDeletion = [];
+  document.getElementById("addNewTaskLabel").onclick = () => addNewTaskLabel();
 
-    for (option of selectedOptions) {
-      let memberId = Number(option.id.replace("optionMember", ""));
+  document.getElementById("addNewTaskLink").onclick = () => addNewTaskLink();
 
-      if (!isNaN(memberId)) {
-        taskData.executors.push({id: memberId, name: option.text});
-        optionsForDeletion.push(option);
-      }
-    }
-
-    for (option of optionsForDeletion) {
-      document.getElementById("newTaskExecutorsSelector").removeChild(option);
-    }
-
-    document.getElementById("noExecutorsHeader").style.display = 'none';
-
-    displayExecutors();
-  }
-
-  document.getElementById("addNewTaskLabel").onclick = () => {
-    const selectedOptions = document.getElementById("newTaskLabelsSelector").selectedOptions;
-
-    let optionsForDeletion = [];
-
-    for (option of selectedOptions) {
-      taskData.labels.push(option.text);
-      optionsForDeletion.push(option);
-    }
-
-    for (option of optionsForDeletion) {
-      document.getElementById("newTaskLabelsSelector").removeChild(option);
-    }
-
-    document.getElementById("noLabelsHeader").style.display = 'none';
-
-    displayLabels();
-  }
-
-  document.getElementById("addNewTaskLink").onclick = () => {
-    const selectedOptions = document.getElementById("newTaskLinksSelector").selectedOptions;
-
-    let optionsForDeletion = [];
-
-    for (option of selectedOptions) {
-      let taskId = Number(option.id.replace("optionLink", ""));
-
-      if (!isNaN(taskId)) {
-        taskData.links.push({id: taskId, name: option.text});
-        optionsForDeletion.push(option);
-      }
-    }
-
-    for (option of optionsForDeletion) {
-      document.getElementById("newTaskLinksSelector").removeChild(option);
-    }
-
-    document.getElementById("noLinksHeader").style.display = 'none';
-
-    displayLinks();
-  }
-
-  document.getElementById("saveTask").onclick = () => {
-    document.getElementById("errorTaskParamsDiv").style.display = 'none';
-
-    let taskName = document.getElementById("newTaskName").value;
-    let taskDesc = document.getElementById("newTaskDesc").value;
-    let taskDueDate = document.getElementById("newTaskDate").value;
-
-    if (!taskName) {
-      document.getElementById("errorTaskParamsDiv").style.display = 'block';
-      return;
-    }
-
-    let taskStatusSelector = document.getElementById("taskStatusSelector");
-
-    let selectedOption = taskStatusSelector.options[taskStatusSelector.selectedIndex];
-
-    if (selectedOption) {
-      let statusOptionId = selectedOption.id;
-
-      if (statusOptionId === "optionStatusNull") {
-        taskData.status = null;
-      } else {
-        taskData.status = selectedOption.text;
-      }
-    }
-
-    taskData.name = taskName;
-    taskData.description = taskDesc;
-    taskData.dueDate = taskDueDate;
-
-    saveTask();
-  }
+  document.getElementById("saveTask").onclick = () => saveTaskHandle();
 
   displayExecutors();
   displayLabels();
   displayLinks();
+}
+
+function showNewTaskExecutorsSection() {
+  document.getElementById("addNewTaskExecutorSection").style.display = 'block';
+  document.getElementById("showNewTaskExecutorsSection").style.display = 'none';
+}
+
+function showNewTaskLabelsSection() {
+  document.getElementById("addNewTaskLabelSection").style.display = 'block';
+  document.getElementById("showNewTaskLabelsSection").style.display = 'none';
+}
+
+function showNewTaskLinksSection() {
+  document.getElementById("addNewTaskLinkSection").style.display = 'block';
+  document.getElementById("showNewTaskLinksSection").style.display = 'none';
+}
+
+function addNewTaskExecutor() {
+  const selectedOptions = document.getElementById("newTaskExecutorsSelector").selectedOptions;
+
+  let optionsForDeletion = [];
+
+  for (option of selectedOptions) {
+    let memberId = Number(option.id.replace("optionMember", ""));
+
+    if (!isNaN(memberId)) {
+      taskData.executors.push({id: memberId, name: option.text});
+      optionsForDeletion.push(option);
+    }
+  }
+
+  for (option of optionsForDeletion) {
+    document.getElementById("newTaskExecutorsSelector").removeChild(option);
+  }
+
+  document.getElementById("noExecutorsHeader").style.display = 'none';
+
+  displayExecutors();
+}
+
+function addNewTaskLabel() {
+  const selectedOptions = document.getElementById("newTaskLabelsSelector").selectedOptions;
+
+  let optionsForDeletion = [];
+
+  for (option of selectedOptions) {
+    taskData.labels.push(option.text);
+    optionsForDeletion.push(option);
+  }
+
+  for (option of optionsForDeletion) {
+    document.getElementById("newTaskLabelsSelector").removeChild(option);
+  }
+
+  document.getElementById("noLabelsHeader").style.display = 'none';
+
+  displayLabels();
+}
+
+function addNewTaskLink() {
+  const selectedOptions = document.getElementById("newTaskLinksSelector").selectedOptions;
+
+  let optionsForDeletion = [];
+
+  for (option of selectedOptions) {
+    let taskId = Number(option.id.replace("optionLink", ""));
+
+    if (!isNaN(taskId)) {
+      taskData.links.push({id: taskId, name: option.text});
+      optionsForDeletion.push(option);
+    }
+  }
+
+  for (option of optionsForDeletion) {
+    document.getElementById("newTaskLinksSelector").removeChild(option);
+  }
+
+  document.getElementById("noLinksHeader").style.display = 'none';
+
+  displayLinks();
+}
+
+function saveTaskHandle() {
+  document.getElementById("errorTaskParamsDiv").style.display = 'none';
+
+  let taskName = document.getElementById("newTaskName").value;
+  let taskDesc = document.getElementById("newTaskDesc").value;
+  let taskDueDate = document.getElementById("newTaskDate").value;
+
+  if (!taskName) {
+    document.getElementById("errorTaskParamsDiv").style.display = 'block';
+    return;
+  }
+
+  let taskStatusSelector = document.getElementById("taskStatusSelector");
+
+  let selectedOption = taskStatusSelector.options[taskStatusSelector.selectedIndex];
+
+  if (selectedOption) {
+    let statusOptionId = selectedOption.id;
+
+    if (statusOptionId === "optionStatusNull") {
+      taskData.status = null;
+    } else {
+      taskData.status = selectedOption.text;
+    }
+  }
+
+  taskData.name = taskName;
+  taskData.description = taskDesc;
+  taskData.dueDate = taskDueDate;
+
+  saveTask();
 }
 
 function loadProjectMembersList() {

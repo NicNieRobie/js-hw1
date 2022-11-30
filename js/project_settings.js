@@ -35,63 +35,69 @@ function init() {
     document.getElementById("noMembersLabel").style.display = 'none';
   }
 
-  document.getElementById("showProjectMemberSection").onclick = () => {
-    document.getElementById("addProjectMemberSection").style.display = 'block';
-    document.getElementById("showProjectMemberSection").style.display = 'none';
-    document.getElementById("noMembersLabel").style.display = 'none';
-  }
+  document.getElementById("showProjectMemberSection").onclick = () => showProjectMemberSection();
 
-  document.getElementById("addProjectMember").onclick = () => {
-    document.getElementById("errorProjectMemberNameEmptyDiv").style.display = 'none';
+  document.getElementById("addProjectMember").onclick = () => addProjectMember();
 
-    let newMemberFirstName = document.getElementById("projectMemberFirstName").value;
-    let newMemberLastName = document.getElementById("projectMemberLastName").value;
-
-    if (!newMemberFirstName) {
-      document.getElementById("errorProjectMemberNameEmptyDiv").style.display = 'block';
-      document.getElementById("errorProjectMemberNameEmpty").innerText = "Имя участника проекта должно быть непустым!";
-      return;
-    }
-
-    if (!newMemberLastName) {
-      document.getElementById("errorProjectMemberNameEmptyDiv").style.display = 'block';
-      document.getElementById("errorProjectMemberNameEmpty").innerText = "Фамилия участника проекта должна быть непустой!"
-      return;
-    }
-
-    currentProject.members.push({
-      id: currentMemberIndex++,
-      name: newMemberFirstName + " " + newMemberLastName
-    });
-
-    displayProjectMembers();
-  }
-
-  document.getElementById("saveProject").onclick = () => {
-    document.getElementById("errorProjectParamsDiv").style.display = 'none';
-
-    let projectName = document.getElementById("projectName").value;
-    let projectDesc = document.getElementById("projectDescription").value;
-
-    if (!projectName) {
-      document.getElementById("errorProjectParamsDiv").style.display = 'block';
-      document.getElementById("errorProjectParams").innerText = "Название проекта должно быть непустым!"
-      return;
-    }
-
-    currentProject.name = projectName;
-    currentProject.description = projectDesc;
-
-    for (board of currentProject.boards) {
-      for (task of board.tasks) {
-        task.executors = task.executors.filter(executor => currentProject.members.filter(m => m.id === executor.id).length > 0);
-      }
-    }
-
-    saveProject();
-  }
+  document.getElementById("saveProject").onclick = () => saveProjectHandle();
 
   displayProjectMembers();
+}
+
+function showProjectMemberSection() {
+  document.getElementById("addProjectMemberSection").style.display = 'block';
+  document.getElementById("showProjectMemberSection").style.display = 'none';
+  document.getElementById("noMembersLabel").style.display = 'none';
+}
+
+function addProjectMember() {
+  document.getElementById("errorProjectMemberNameEmptyDiv").style.display = 'none';
+
+  let newMemberFirstName = document.getElementById("projectMemberFirstName").value;
+  let newMemberLastName = document.getElementById("projectMemberLastName").value;
+
+  if (!newMemberFirstName) {
+    document.getElementById("errorProjectMemberNameEmptyDiv").style.display = 'block';
+    document.getElementById("errorProjectMemberNameEmpty").innerText = "Имя участника проекта должно быть непустым!";
+    return;
+  }
+
+  if (!newMemberLastName) {
+    document.getElementById("errorProjectMemberNameEmptyDiv").style.display = 'block';
+    document.getElementById("errorProjectMemberNameEmpty").innerText = "Фамилия участника проекта должна быть непустой!"
+    return;
+  }
+
+  currentProject.members.push({
+    id: currentMemberIndex++,
+    name: newMemberFirstName + " " + newMemberLastName
+  });
+
+  displayProjectMembers();
+}
+
+function saveProjectHandle() {
+  document.getElementById("errorProjectParamsDiv").style.display = 'none';
+
+  let projectName = document.getElementById("projectName").value;
+  let projectDesc = document.getElementById("projectDescription").value;
+
+  if (!projectName) {
+    document.getElementById("errorProjectParamsDiv").style.display = 'block';
+    document.getElementById("errorProjectParams").innerText = "Название проекта должно быть непустым!"
+    return;
+  }
+
+  currentProject.name = projectName;
+  currentProject.description = projectDesc;
+
+  for (board of currentProject.boards) {
+    for (task of board.tasks) {
+      task.executors = task.executors.filter(executor => currentProject.members.filter(m => m.id === executor.id).length > 0);
+    }
+  }
+
+  saveProject();
 }
 
 function displayProjectMembers() {

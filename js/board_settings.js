@@ -36,70 +36,80 @@ function init() {
     document.getElementById("noStatusLabel").style.display = 'none';
   }
 
-  document.getElementById("showBoardLabelSection").onclick = () => {
-    document.getElementById("addBoardLabelSection").style.display = 'block';
-    document.getElementById("showBoardLabelSection").style.display = 'none';
-    document.getElementById("noLabelsHeader").style.display = 'none';
-  }
+  document.getElementById("showBoardLabelSection").onclick = () => showBoardLabelSection();
 
-  document.getElementById("addBoardLabel").onclick = () => {
-    document.getElementById("errorBoardLabelDiv").style.display = 'none';
+  document.getElementById("addBoardLabel").onclick = () => addBoardLabel();
 
-    let labelName = document.getElementById("boardLabelName").value;
+  document.getElementById("showBoardStatusSection").onclick = () => showBoardStatusSection();
 
-    if (currentBoard.labels.includes(labelName) || !labelName) {
-      document.getElementById("errorBoardLabelDiv").style.display = 'block';
-      return;
-    }
+  document.getElementById("addBoardStatus").onclick = () => addBoardStatus();
 
-    currentBoard.labels.push(labelName);
-
-    displayLabels();
-  }
-
-  document.getElementById("showBoardStatusSection").onclick = () => {
-    document.getElementById("addBoardStatusSection").style.display = 'block';
-    document.getElementById("showBoardStatusSection").style.display = 'none';
-    document.getElementById("noStatusLabel").style.display = 'none';
-  }
-
-  document.getElementById("addBoardStatus").onclick = () => {
-    document.getElementById("errorBoardStatusDiv").style.display = 'none';
-
-    let statusName = document.getElementById("boardStatusName").value;
-
-    if (currentBoard.status.includes(statusName) || !statusName) {
-      document.getElementById("errorBoardStatusDiv").style.display = 'block';
-      return;
-    }
-
-    currentBoard.status.push(statusName);
-
-    displayStatus();
-  }
-
-  document.getElementById("saveBoard").onclick = () => {
-    document.getElementById("errorBoardParamsDiv").style.display = 'none';
-
-    let boardName = document.getElementById("boardName").value;
-
-    if (!boardName) {
-      document.getElementById("errorBoardParamsDiv").style.display = 'block';
-      return;
-    }
-
-    currentBoard.name = boardName;
-
-    for (task of currentBoard.tasks) {
-      task.labels = task.labels.filter(label => currentBoard.labels.includes(label));
-      task.status = currentBoard.status.includes(task.status) ? task.status : null;
-    }
-
-    saveBoard();
-  }
+  document.getElementById("saveBoard").onclick = () => saveBoardHandle();
 
   displayLabels();
   displayStatus();
+}
+
+function showBoardLabelSection() {
+  document.getElementById("addBoardLabelSection").style.display = 'block';
+  document.getElementById("showBoardLabelSection").style.display = 'none';
+  document.getElementById("noLabelsHeader").style.display = 'none';
+}
+
+function showBoardStatusSection() {
+  document.getElementById("addBoardStatusSection").style.display = 'block';
+  document.getElementById("showBoardStatusSection").style.display = 'none';
+  document.getElementById("noStatusLabel").style.display = 'none';
+}
+
+function addBoardLabel() {
+  document.getElementById("errorBoardLabelDiv").style.display = 'none';
+
+  let labelName = document.getElementById("boardLabelName").value;
+
+  if (currentBoard.labels.includes(labelName) || !labelName) {
+    document.getElementById("errorBoardLabelDiv").style.display = 'block';
+    return;
+  }
+
+  currentBoard.labels.push(labelName);
+
+  displayLabels();
+}
+
+function addBoardStatus() {
+  document.getElementById("errorBoardStatusDiv").style.display = 'none';
+
+  let statusName = document.getElementById("boardStatusName").value;
+
+  if (currentBoard.status.includes(statusName) || !statusName) {
+    document.getElementById("errorBoardStatusDiv").style.display = 'block';
+    return;
+  }
+
+  currentBoard.status.push(statusName);
+
+  displayStatus();
+}
+
+function saveBoardHandle() {
+  document.getElementById("errorBoardParamsDiv").style.display = 'none';
+
+  let boardName = document.getElementById("boardName").value;
+
+  if (!boardName) {
+    document.getElementById("errorBoardParamsDiv").style.display = 'block';
+    return;
+  }
+
+  currentBoard.name = boardName;
+
+  for (task of currentBoard.tasks) {
+    task.labels = task.labels.filter(label => currentBoard.labels.includes(label));
+    task.status = currentBoard.status.includes(task.status) ? task.status : null;
+  }
+
+  saveBoard();
 }
 
 function displayLabels() {
