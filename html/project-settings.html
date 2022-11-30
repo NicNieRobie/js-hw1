@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="../css/project-settings.css" rel="stylesheet">
+  <script src="../js/store.js" defer></script>
+  <script src="../js/project_settings.js" defer></script>
+  <title>Настройки проекта - Project Control</title>
+</head>
+<body>
+  <header>
+    <span>PROJECT CONTROL</span>
+  </header>
+  <div class="container">
+    <button class="back-link" id="topBackLink">&lt;- Назад</button>
+    <div id="errorProjectLoadDiv" class="error">
+      <span>Проект не был загружен, перезагрузите страницу или загрузите данные заново.</span>
+    </div>
+    <div class="form-container">
+      <button class="back-link">&lt;- Назад</button>
+      <h1>Настройки проекта</h1>
+      <p id="projectSettingsDesc">Настройки проекта</p>
+      <hr>
+      <div id="errorProjectParamsDiv" class="error">
+        <span id="errorProjectParams">Название должно быть непустым!</span>
+      </div>
+      <div class="input-div">
+        <label>Название проекта:</label>
+        <input type="text" id="projectName">
+      </div>
+      <div class="input-div">
+        <label>Описание проекта:</label>
+        <input type="text" id="projectDescription">
+      </div>
+      <hr>
+      <span id="membersHeader">Участники проекта</span>
+      <span id="noMembersLabel">Пока тут никого!</span>
+      <div id="projectMembersSection">
+      </div>
+      <button id="showProjectMemberSection">Добавить участника проекта</button>
+      <section id="addProjectMemberSection">
+        <div id="errorProjectMemberNameEmptyDiv" class="error">
+          <span id="errorProjectMemberNameEmpty">Имя участника проекта должно быть непустым!</span>
+        </div>
+        <div class="input-div">
+          <label>Фамилия участника:</label>
+          <input type="text" id="projectMemberLastName">
+        </div>
+        <div class="input-div">
+          <label>Имя участника:</label>
+          <input type="text" id="projectMemberFirstName">
+        </div>
+        <button id="addProjectMember">Добавить</button>
+      </section>
+      <hr>
+      <button id="saveProject">Сохранить изменения</button>
+    </div>
+  </div>
+</body>
+</html>

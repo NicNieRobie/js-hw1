@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="../css/board-settings.css" rel="stylesheet">
+  <script src="../js/store.js" defer></script>
+  <script src="../js/board_settings.js" defer></script>
+  <title>Настройки доски</title>
+</head>
+<body>
+  <header>
+    <span>PROJECT CONTROL</span>
+  </header>
+  <div class="container">
+    <button class="back-link" id="topBackLink">&lt;- Назад</button>
+    <div id="errorBoardLoadDiv" class="error">
+      <span>Доска не была загружена, перезагрузите страницу или загрузите данные заново.</span>
+    </div>
+    <div class="form-container">
+      <button class="back-link">&lt;- Назад</button>
+      <h1>Настройки доски задач</h1>
+      <p id="boardSettingsDesc">Настройки доски задач.</p>
+      <hr>
+      <div id="errorBoardParamsDiv" class="error">
+        <span id="errorBoardParams">Название должно быть непустым!</span>
+      </div>
+      <div class="input-div">
+        <label>Название доски:</label>
+        <input type="text" id="boardName">
+      </div>
+      <hr>
+      <span class="sectionHeader">Метки задач</span>
+      <span id="noLabelsHeader">Список меток пуст!</span>
+      <div id="boardLabelsSection">
+      </div>
+      <button id="showBoardLabelSection">Добавить метку</button>
+      <section id="addBoardLabelSection">
+        <div id="errorBoardLabelDiv" class="error">
+          <span id="errorBoardLabel">Название метки должно быть непустым и уникальным!</span>
+        </div>
+        <div class="input-div">
+          <label>Название метки:</label>
+          <input type="text" id="boardLabelName">
+        </div>
+        <button id="addBoardLabel">Добавить</button>
+      </section>
+      <hr>
+      <span class="sectionHeader">Статусы задач</span>
+      <span id="noStatusLabel">Список статусов пуст!</span>
+      <div id="boardStatusSection">
+      </div>
+      <button id="showBoardStatusSection">Добавить статус</button>
+      <section id="addBoardStatusSection">
+        <div id="errorBoardStatusDiv" class="error">
+          <span id="errorBoardStatus">Название статуса должно быть непустым!</span>
+        </div>
+        <div class="input-div">
+          <label>Название статуса:</label>
+          <input type="text" id="boardStatusName">
+        </div>
+        <button id="addBoardStatus">Добавить</button>
+      </section>
+      <hr>
+      <button id="saveBoard">Сохранить настройки</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+body {
+  font-family: 'Montserrat', sans-serif; 
+  font-weight: 400;
+  height: 100vh;
+  margin: 0;
+}
+
+header {
+  background-color: #0091ff;
+  padding: 20px;
+  color: white;
+  font-weight: 600;
+  font-size: 1.5em;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.form-container {
+  width: 70%;
+}
+
+h1 {
+  margin-bottom: 40px;
+}
+
+hr {
+  margin: auto;
+  width: 92.5%;
+  background-color: #091e4221;
+  border: 0;
+  height: 1px;
+  margin: 16px 0;
+  padding: 0;
+  width: 100%;
+}
+
+button, a {
+  font-family: 'Montserrat', sans-serif; 
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 6px 12px;
+  text-decoration: none;
+  white-space: normal;
+  background-color: rgba(9, 30, 66, 0.1);
+  box-shadow: none;
+  border: none;
+  color: inherit;
+}
+
+.project {
+  border-radius: 10px;
+  background-color: #E8EFFB;
+  padding: 15px;
+  margin: 15px 0 5px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between
+}
+
+.project-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-header .project-name {
+  font-weight: 700;
+  color: #172b4d;
+  font-size: 1.3em;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.error {
+  background-color: #FFDCDC;
+  padding: 15px;
+  border-radius: 10px;
+  color: #C90000;
+}
+
+.project-boards-container {
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 15px;
+  overflow-x: auto;
+}
+
+.project-board {
+  flex: 0 0 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(9, 30, 66, 0.1);
+  height: 60px;
+  padding: 15px;
+  margin: 0 2% 15px 0;
+  border-radius: 10px;
+}
+
+.project-board .board-name {
+  font-weight: 600;
+}
+
+.project-board .board-task-count {
+  color: #5e6c84;
+}
+
+.project-header-sidebar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+#projectContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.interactive-panel {
+  cursor: pointer;
+}
+
+.project-desc {
+  display: block;
+  margin: 10px 0 4px 0;
+  color: #5e6c84;
+}

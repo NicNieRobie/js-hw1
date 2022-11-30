@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="../css/board.css" rel="stylesheet">
+  <script src="../js/store.js" defer></script>
+  <script src="../js/board.js" defer></script>
+  <title>Проект</title>
+</head>
+<body>
+  <header>
+    <span>PROJECT CONTROL</span>
+  </header>
+  <div class="container">
+    <a href="project.html" class="back-link" id="topBackLink">&lt;- Страница проекта</a>
+    <div id="errorBoardLoadDiv" class="error">
+      <span>Доска не была загружен, перезагрузите страницу или загрузите данные заново.</span>
+    </div>
+    <div class="form-container">
+      <a href="project.html" class="back-link">&lt;- Страница проекта</a>
+      <h1 id="boardNameLabel">Доска задач Test</h1>
+      <p id="taskCountLabel">2 задачи</p>
+      <p>Выберите задачу, чтобы просмотреть подробности о ней.</p>
+      <hr>
+      <a id="createTask" href="new-task.html">Создать задачу</a>
+      <button id="btnBoardSettings">Настройки</button>
+      <hr>
+      <div id="boardTasksContainer"></div>
+      <div id="taskModal" class="modal">
+        <div class="modal-content">
+          <div class="task-modal-header">
+            <span class="task-name" id="taskModalName"></span>
+            <div>
+              <button id="btnTaskModalSettings">Изменить</button>
+              <button id="btnTaskModalClose">Закрыть</button>
+            </div>
+          </div>
+          <span class="task-modal-status" id="taskModalStatus">Статус -</span>
+          <span class="task-modal-status" id="taskModalDueDate">Срок выполнения -</span>
+          <div class="task-labels-container" id="taskModalLabelsContainer">
+          </div>
+          <hr>
+          <span class="section-header">Описание</span>
+          <span id="taskModalDescription"></span>
+          <hr>
+          <span class="section-header">Исполнители</span>
+          <span id="taskModalExecutors"></span>
+          <div id="taskModalLinksSection">
+            <hr>
+            <span class="section-header">Ссылки на другие задачи</span>
+            <div class="link-list" id="taskModalLinksContainer">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

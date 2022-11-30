@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="../css/new-project.css" rel="stylesheet">
+  <script src="../js/store.js" defer></script>
+  <script src="../js/new_project.js" defer></script>
+  <title>Новый проект</title>
+</head>
+<body>
+  <header>
+    <span>PROJECT CONTROL</span>
+  </header>
+  <div class="container">
+    <div class="form-container">
+      <button class="back-link">&lt;- Назад</button>
+      <h1>Новый проект</h1>
+      <p>Проект позволяет вам объединять доски задач в одну организационную единицу и управлять списком доступных исполнителей задач.</p>
+      <hr>
+      <div id="errorProjectParamsDiv" class="error">
+        <span id="errorProjectParams">Название должно быть непустым!</span>
+      </div>
+      <div class="input-div">
+        <label>Название проекта:</label>
+        <input type="text" id="newProjectName">
+      </div>
+      <div class="input-div">
+        <label>Описание проекта:</label>
+        <input type="text" id="newProjectDescription">
+      </div>
+      <hr>
+      <span id="membersHeader">Участники проекта</span>
+      <span id="noMembersLabel">Пока тут никого!</span>
+      <div id="newProjectMembersSection">
+      </div>
+      <button id="showNewProjectMemberSection">Добавить участника проекта</button>
+      <section id="addNewProjectMemberSection">
+        <div id="errorNewProjectMemberNameEmptyDiv" class="error">
+          <span id="errorNewProjectMemberNameEmpty">Имя участника проекта должно быть непустым!</span>
+        </div>
+        <div class="input-div">
+          <label>Фамилия участника:</label>
+          <input type="text" id="newProjectMemberLastName">
+        </div>
+        <div class="input-div">
+          <label>Имя участника:</label>
+          <input type="text" id="newProjectMemberFirstName">
+        </div>
+        <button id="addNewProjectMember">Добавить</button>
+      </section>
+      <hr>
+      <button id="createProject">Создать проект</button>
+    </div>
+  </div>
+</body>
+</html>

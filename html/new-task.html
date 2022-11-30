@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="../css/new-task.css" rel="stylesheet">
+  <script src="../js/store.js" defer></script>
+  <script src="../js/new_task.js" defer></script>
+  <title>Новая задача</title>
+</head>
+<body>
+  <header>
+    <span>PROJECT CONTROL</span>
+  </header>
+  <div class="container">
+    <button class="back-link" id="topBackLink">&lt;- Назад</button>
+    <div id="errorProjectLoadDiv" class="error">
+      <span>Проект не был загружен, перезагрузите страницу или загрузите данные заново.</span>
+    </div>
+    <div id="errorBoardLoadDiv" class="error">
+      <span>Доска не была загружена, перезагрузите страницу или загрузите данные заново.</span>
+    </div>
+    <div class="form-container">
+      <button class="back-link">&lt;- Назад</button>
+      <h1>Новая задача</h1>
+      <p>Для создания задачи заполните поля, помеченные звёздочкой - *.</p>
+      <hr>
+      <div id="errorTaskParamsDiv" class="error">
+        <span id="errorTaskParams">Название должно быть непустым!</span>
+      </div>
+      <div class="input-div">
+        <label>Название задачи*:</label>
+        <input type="text" id="newTaskName">
+      </div>
+      <div class="input-div">
+        <label>Описание задачи:</label>
+        <input type="text" id="newTaskDesc">
+      </div>
+      <div class="input-div">
+        <label>Конечная дата исполнения задачи:</label>
+        <input type="date" id="newTaskDate">
+      </div>
+      <hr>
+      <span class="sectionHeader">Исполнители задачи</span>
+      <span id="noExecutorsHeader">Список исполнителей пуст!</span>
+      <div id="newTaskExecutorsSection">
+      </div>
+      <button id="showNewTaskExecutorsSection">Добавить исполнителя</button>
+      <section id="addNewTaskExecutorSection">
+        <div class="input-div">
+          <label>Выберите одного или несколько исполнителей:</label>
+          <select multiple="true" id="newTaskExecutorsSelector">
+          </select>
+        </div>
+        <button id="addNewTaskExecutor">Добавить</button>
+      </section>
+      <hr>
+      <span class="sectionHeader">Метки задачи</span>
+      <span id="noLabelsHeader">Список меток пуст!</span>
+      <div id="newTaskLabelsSection">
+      </div>
+      <button id="showNewTaskLabelsSection">Добавить метку</button>
+      <section id="addNewTaskLabelSection">
+        <div class="input-div">
+          <label>Выберите одну или несколько меток:</label>
+          <select multiple="true" id="newTaskLabelsSelector">
+          </select>
+        </div>
+        <button id="addNewTaskLabel">Добавить</button>
+      </section>
+      <hr>
+      <span class="sectionHeader">Ссылки на другие задачи</span>
+      <span id="noLinksHeader">Список ссылок пуст!</span>
+      <div id="newTaskLinksSection">
+      </div>
+      <button id="showNewTaskLinksSection">Добавить ссылку</button>
+      <section id="addNewTaskLinkSection">
+        <div class="input-div">
+          <label>Выберите одну или несколько задач:</label>
+          <select multiple="true" id="newTaskLinksSelector">
+          </select>
+        </div>
+        <button id="addNewTaskLink">Добавить</button>
+      </section>
+      <hr>
+      <button id="createTask">Создать задачу</button>
+    </div>
+  </div>
+</body>
+</html>
