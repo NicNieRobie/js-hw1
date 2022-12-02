@@ -85,6 +85,12 @@ function addTaskData(taskData) {
     currentProjectId = Number(currentProjectId);
   }
 
+  if (currentBoardId === null) {
+    return;
+  } else {
+    currentBoardId = Number(currentBoardId);
+  }
+
   let projectDataArray = projectDataArrayStr ? JSON.parse(projectDataArrayStr) : [];
 
   let targetProjIndex = 0;
@@ -536,7 +542,10 @@ function uploadProjectData(callback = null) {
         let str = fileReader.result;
 
         if (JSON.parse(str)) {
+          const projData = JSON.parse(str);
+
           localWrite("projectData", str);
+          cumulativeProjectIndex = projData.length + 1;
 
           if (typeof callback === "function")
           {

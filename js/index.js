@@ -84,9 +84,14 @@ function loadProjects() {
 
     for (board of project.boards) {
       let projectBoard = document.createElement("div");
-      projectBoard.id = "btnBoard" + board.id;
+      projectBoard.id = "btnBoard" + board.id + "-" + project.id;
       projectBoard.onclick = (e) => {
-        let boardId = Number(e.target.id.replace("btnBoard", ""));
+        let idStr = e.target.closest('[id^="btnBoard"]').id.replace("btnBoard", "");
+
+        let boardId = Number(idStr.split('-')[0]);
+        let projId = Number(idStr.split('-')[1]);
+
+        setCurrentProjectId(projId);
         setCurrentBoardId(boardId);
         window.location.href = "./html/board.html";
       }
@@ -100,7 +105,7 @@ function loadProjects() {
     createProjectBoard.classList.add('project-board', 'interactive-panel');
     createProjectBoard.innerHTML = '<span class="board-name">Создать доску</span>';
     createProjectBoard.onclick = (e) => {
-      let projectId = Number(e.target.id.replace("btnCreateBoard", ""));
+      let projectId = Number(e.target.closest('[id^="btnCreateBoard"]').id.replace("btnCreateBoard", ""));
       setCurrentProjectId(projectId);
       window.location.href = "./html/new-board.html";
     }

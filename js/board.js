@@ -186,7 +186,7 @@ function displayModalTask() {
         boardTaskDiv.classList.add('board-task', 'interactive-panel');
         boardTaskDiv.id = "btnLinkedTask" + task.id;
         boardTaskDiv.onclick = (e) => {
-          let taskId = Number(e.target.id.replace("btnLinkedTask", ""));
+          let taskId = Number(e.target.closest('[id^="btnLinkedTask"]').id.replace("btnLinkedTask", ""));
 
           setCurrentTaskId(taskId);
           displayModalTask();

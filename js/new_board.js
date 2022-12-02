@@ -34,9 +34,9 @@ function showNewBoardLabelSection() {
 }
 
 function showNewBoardStatusSection() {
-  document.getElementById("addNewBoardLabelSection").style.display = 'block';
-  document.getElementById("showNewBoardLabelSection").style.display = 'none';
-  document.getElementById("noLabelsHeader").style.display = 'none';
+  document.getElementById("addNewBoardStatusSection").style.display = 'block';
+  document.getElementById("showNewBoardStatusSection").style.display = 'none';
+  document.getElementById("noStatusLabel").style.display = 'none';
 }
 
 function addNewBoardLabel() {

@@ -102,9 +102,14 @@ function loadBoards() {
     for (task of board.tasks) {
       let boardTaskDiv = document.createElement("div");
       boardTaskDiv.classList.add('board-task', 'interactive-panel');
-      boardTaskDiv.id = "btnTaskModal" + task.id;
+      boardTaskDiv.id = "btnTaskModal" + task.id + "-" + board.id;
       boardTaskDiv.onclick = (e) => {
-        let taskId = Number(e.target.id.replace("btnTaskModal", ""));
+        let idStr = e.target.closest('[id^="btnTaskModal"]').id.replace("btnTaskModal", "");
+
+        let taskId = Number(idStr.split('-')[0]);
+        let boardId = Number(idStr.split('-')[1]);
+
+        setCurrentBoardId(boardId);
         setCurrentTaskId(taskId);
         displayModalTask();
       }
@@ -135,7 +140,7 @@ function loadBoards() {
     boardTaskDiv.classList.add('board-task', 'interactive-panel');
     boardTaskDiv.id = "btnCreateTask" + board.id;
     boardTaskDiv.onclick = (e) => {
-      let boardId = Number(e.target.id.replace("btnCreateTask", ""));
+      let boardId = Number(e.target.closest('[id^="btnCreateTask"]').id.replace("btnCreateTask", ""));
       setCurrentBoardId(boardId);
       window.location.href = "./new-task.html";
     }
@@ -212,7 +217,7 @@ function displayModalTask() {
         boardTaskDiv.classList.add('board-task', 'interactive-panel');
         boardTaskDiv.id = "btnLinkedTask" + task.id;
         boardTaskDiv.onclick = (e) => {
-          let taskId = Number(e.target.id.replace("btnLinkedTask", ""));
+          let taskId = Number(e.target.closest('[id^="btnLinkedTask"]').id.replace("btnLinkedTask", ""));
 
           setCurrentTaskId(taskId);
           displayModalTask();
